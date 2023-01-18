@@ -20,4 +20,9 @@ public class ProductController {
     public List<Product> getAllProducts() {
         return repository.findAll();
     }
+
+    @PostMapping("/products")
+    public Product createProduct(@RequestBody Product product) {
+        return repository.save(product);
+    }
 }
