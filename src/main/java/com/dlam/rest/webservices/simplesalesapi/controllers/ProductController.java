@@ -1,5 +1,7 @@
-package com.dlam.rest.webservices.simplesalesapi.product;
+package com.dlam.rest.webservices.simplesalesapi.controllers;
 
+import com.dlam.rest.webservices.simplesalesapi.models.Product;
+import com.dlam.rest.webservices.simplesalesapi.repositories.ProductRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

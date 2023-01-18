@@ -1,5 +1,7 @@
-package com.dlam.rest.webservices.simplesalesapi.product;
+package com.dlam.rest.webservices.simplesalesapi.services;
 
+import com.dlam.rest.webservices.simplesalesapi.models.Product;
+import com.dlam.rest.webservices.simplesalesapi.repositories.ProductRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;

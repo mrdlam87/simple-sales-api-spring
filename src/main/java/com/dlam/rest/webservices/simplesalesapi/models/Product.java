@@ -1,4 +1,4 @@
-package com.dlam.rest.webservices.simplesalesapi.product;
+package com.dlam.rest.webservices.simplesalesapi.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
