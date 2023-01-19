@@ -2,6 +2,7 @@ package com.dlam.rest.webservices.simplesalesapi.controllers;
 
 import com.dlam.rest.webservices.simplesalesapi.models.*;
 import com.dlam.rest.webservices.simplesalesapi.repositories.ProductRepository;
+import com.dlam.rest.webservices.simplesalesapi.services.ResponseHandler;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +40,7 @@ public class SalesController {
         });
         newSale.setTotalItems(totalItems);
 
-        return new ResponseEntity<Object>(newSale, HttpStatus.OK);
+        return ResponseHandler.generateResponse("success", HttpStatus.OK, newSale);
     }
 
     @PostMapping("/sales/specials")
@@ -66,12 +67,11 @@ public class SalesController {
         newSale.setTotalPrice(newSale.getTotalPrice() - discount);
 
         totalItems.forEach(item -> {
-            Double originalPrice = item.getTotalPrice();
             item.setDiscount(discountRate * item.getTotalPrice());
-            item.setTotalPrice(originalPrice - item.getDiscount());
+            item.setTotalPrice(item.getTotalPrice() - item.getDiscount());
         });
         newSale.setTotalItems(totalItems);
 
-        return new ResponseEntity<Object>(newSale, HttpStatus.OK);
+        return ResponseHandler.generateResponse("success", HttpStatus.OK, newSale);
     }
 }

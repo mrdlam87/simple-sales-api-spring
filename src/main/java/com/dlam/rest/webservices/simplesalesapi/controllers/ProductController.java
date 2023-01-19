@@ -2,6 +2,9 @@ package com.dlam.rest.webservices.simplesalesapi.controllers;
 
 import com.dlam.rest.webservices.simplesalesapi.models.Product;
 import com.dlam.rest.webservices.simplesalesapi.repositories.ProductRepository;
+import com.dlam.rest.webservices.simplesalesapi.services.ResponseHandler;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,32 +19,35 @@ public class ProductController {
     }
 
     @GetMapping("/products")
-    public List<Product> getAllProducts() {
-        return repository.findAll();
+    public ResponseEntity<Object> getAllProducts() {
+        return ResponseHandler.generateResponse("success", HttpStatus.OK, repository.findAll());
     }
 
     @GetMapping("/products/{id}")
-    public Product getProduct(@PathVariable Long id) {
-        return repository.findById(id).get();
+    public ResponseEntity<Object> getProduct(@PathVariable Long id) {
+        return ResponseHandler.generateResponse("success", HttpStatus.OK, repository.findById(id).get());
     }
 
     @PostMapping("/products")
-    public Product createProduct(@RequestBody Product product) {
-        return repository.save(product);
+    public ResponseEntity<Object> createProduct(@RequestBody Product product) {
+        return ResponseHandler.generateResponse("success", HttpStatus.CREATED, repository.save(product));
     }
 
     @PutMapping("/products/{id}")
-    public Product updateProduct(@RequestBody Product product, @PathVariable Long id) {
-        return repository.findById(id).map(prod -> {
+    public ResponseEntity<Object> updateProduct(@RequestBody Product product, @PathVariable Long id) {
+        Product updatedProduct = repository.findById(id).map(prod -> {
             prod.setName(product.getName());
             prod.setPrice(product.getPrice());
 
             return repository.save(prod);
         }).get();
+
+        return ResponseHandler.generateResponse("success", HttpStatus.CREATED, updatedProduct);
     }
 
     @DeleteMapping("/products/{id}")
-    public void deleteProduct(@PathVariable Long id) {
+    public ResponseEntity<Object> deleteProduct(@PathVariable Long id) {
         repository.deleteById(id);
+        return ResponseHandler.generateResponse("success", HttpStatus.ACCEPTED, null);
     }
 }
