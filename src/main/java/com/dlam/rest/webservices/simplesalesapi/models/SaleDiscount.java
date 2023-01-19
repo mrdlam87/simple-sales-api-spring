@@ -2,14 +2,17 @@ package com.dlam.rest.webservices.simplesalesapi.models;
 
 import java.util.List;
 
-public class Sale {
+public class SaleDiscount {
 
     private List<LineItem> lineItems;
-    private List<TotalItem> totalItems;
+    private List<TotalItemDiscount> totalItems;
     private Double totalPrice = 0.0;
 
-    public Sale(List<LineItem> lineItems) {
+    private Double discount = 0.0;
+
+    public SaleDiscount(List<LineItem> lineItems, Double discount) {
         this.lineItems = lineItems;
+        this.discount = discount;
     }
 
     public List<LineItem> getLineItems() {
@@ -20,11 +23,11 @@ public class Sale {
         this.lineItems = lineItems;
     }
 
-    public List<TotalItem> getTotalItems() {
+    public List<TotalItemDiscount> getTotalItems() {
         return totalItems;
     }
 
-    public void setTotalItems(List<TotalItem> totalItems) {
+    public void setTotalItems(List<TotalItemDiscount> totalItems) {
         this.totalItems = totalItems;
     }
 
@@ -34,5 +37,13 @@ public class Sale {
 
     public void setTotalPrice(Double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public Double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
     }
 }

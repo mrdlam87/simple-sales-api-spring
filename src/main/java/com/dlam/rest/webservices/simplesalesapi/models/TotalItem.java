@@ -9,6 +9,9 @@ public class TotalItem {
         return id;
     }
 
+    public TotalItem() {
+    }
+
     public TotalItem(Long id, Double totalPrice) {
         this.id = id;
         this.totalPrice = totalPrice;
