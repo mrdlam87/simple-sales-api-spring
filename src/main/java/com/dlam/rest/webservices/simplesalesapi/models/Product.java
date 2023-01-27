@@ -4,12 +4,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
+// Try seperating models(request/response) from entities (DB entities)
 @Entity
 public class Product {
+
     @Id
     @GeneratedValue
     private Long id;
     private String name;
+
+    // Price should be kept as bigdecimal, as we will loose precision in case of double.float
     private Double price;
 
     public Product() {

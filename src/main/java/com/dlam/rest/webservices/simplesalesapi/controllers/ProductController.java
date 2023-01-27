@@ -12,14 +12,19 @@ import java.util.List;
 @RestController
 public class ProductController {
 
+    // controller should directly interact with repository, add a service layer in between
     private final ProductRepository repository;
 
     ProductController(ProductRepository repository) {
         this.repository = repository;
     }
 
+    // Object as return type is quite generic, add some request responses in the model
     @GetMapping("/products")
     public ResponseEntity<Object> getAllProducts() {
+
+
+        // We can use, ResponseEntity.ok()
         return ResponseHandler.generateResponse("success", HttpStatus.OK, repository.findAll());
     }
 
@@ -28,6 +33,7 @@ public class ProductController {
         return ResponseHandler.generateResponse("success", HttpStatus.OK, repository.findById(id).get());
     }
 
+    // We can use @Valid annotation to validate request, in model we need to specify annotations like @NotNull, @NotEmpty etc.
     @PostMapping("/products")
     public ResponseEntity<Object> createProduct(@RequestBody Product product) {
         return ResponseHandler.generateResponse("success", HttpStatus.CREATED, repository.save(product));
@@ -35,6 +41,10 @@ public class ProductController {
 
     @PutMapping("/products/{id}")
     public ResponseEntity<Object> updateProduct(@RequestBody Product product, @PathVariable Long id) {
+
+        // Service layer logic
+//        Product updatedProduct = repository.findById(id).orElseThrow(()->new IllegalArgumentException("Given product id not present"));
+
         Product updatedProduct = repository.findById(id).map(prod -> {
             prod.setName(product.getName());
             prod.setPrice(product.getPrice());

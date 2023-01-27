@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 public class SalesController {
+    // Similar comments as in ProductController
     private SaleDaoService service;
 
     SalesController(SaleDaoService service) {
@@ -26,6 +27,14 @@ public class SalesController {
     }
 
     @PostMapping("/sales/specials")
+    /* The whole payload should be part of 1 RequestBody
+
+    {
+        linesItems: [],
+        totalDiscount: 100
+    }
+
+    */
     public ResponseEntity<Object> createDiscountSales(@RequestBody List<LineItem> lineItems, @RequestParam Double discount) {
         SaleDiscount newSale = service.create(lineItems, discount);
 
