@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 
 public class LineItem {
     // use primitives as they will take default value of 0
-    // This is menat to be productId I think
+    // This is meant to be productId I think
     private Long id;
 
     private Integer quantity;

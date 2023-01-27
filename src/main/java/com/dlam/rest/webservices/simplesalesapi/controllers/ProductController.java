@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 public class ProductController {
 
-    // controller should directly interact with repository, add a service layer in between
+    // controller shouldn't directly interact with repository, add a service layer in between
     private final ProductRepository repository;
 
     ProductController(ProductRepository repository) {
