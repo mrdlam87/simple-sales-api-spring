@@ -3,6 +3,7 @@ package com.dlam.rest.webservices.simplesalesapi.services;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+// We wouldn't need this as ResponseEntity already provide these fields 1 way or the other
 public class ResponseHandler {
     public static ResponseEntity<Object> generateResponse(String message, HttpStatus status,
                                                           Object responseObj) {

@@ -7,18 +7,26 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+// Services are annotated with @Service
 @Component
 public class SaleDaoService {
+
+    // SaleService should interact with Product service, not directl with productRepository
     private final ProductRepository productRepository;
 
+    // Glad we have constructor based dependency injection.
+    // Doing this in all classes result in lot of boiler plate code, so we use lombok annotations.
+    // In this case, we can get rid of this constructor, and use @RequiredArgsConstructor
     SaleDaoService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
+    // Please specify in method name what are we creating
     public Sale create(List<LineItem> lineItems) {
         Sale newSale = new Sale(lineItems);
         List<TotalItem> totalItems = new ArrayList<>();
 
+        // if we have 5 items for same, we would be hitting db query 5 times.
         lineItems.stream().forEach(sale -> {
             Double price = productRepository.findById(sale.getId()).get().getPrice();
             Double totalItemPrice = sale.getQuantity() * price;
@@ -38,6 +46,7 @@ public class SaleDaoService {
         return newSale;
     }
 
+    // Please specify in method name what are we creating
     public SaleDiscount create(List<LineItem> lineItems, Double discount) {
         SaleDiscount newSale = new SaleDiscount(lineItems, discount);
         List<TotalItemDiscount> totalItems = new ArrayList<>();

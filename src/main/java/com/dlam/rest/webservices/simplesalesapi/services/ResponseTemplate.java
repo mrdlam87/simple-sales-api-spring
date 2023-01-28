@@ -2,6 +2,8 @@ package com.dlam.rest.webservices.simplesalesapi.services;
 
 import org.springframework.http.HttpStatus;
 
+// We wouldn't need this as ResponseEntity already provide these fields 1 way or the other
+
 public class ResponseTemplate {
     private String message;
     private HttpStatus status;

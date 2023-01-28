@@ -13,6 +13,7 @@ public class LoadDatabase {
 
     private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
+    // This can be done as part of @postcontruct of something, creating a bean for populating data might be probalamatic
     @Bean
     CommandLineRunner initDatabase(ProductRepository repository) {
 
