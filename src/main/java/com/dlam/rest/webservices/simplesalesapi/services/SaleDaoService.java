@@ -7,6 +7,7 @@ import com.dlam.rest.webservices.simplesalesapi.repositories.SaleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -19,7 +20,7 @@ public class SaleDaoService {
     private OrderRepository orderRepository;
 
     public Sale create(List<LineItem> lineItems) {
-        Sale sale = new Sale("In Progress");
+        Sale sale = new Sale();
         saleRepository.save(sale);
 
         lineItems.forEach(item -> {
@@ -31,8 +32,10 @@ public class SaleDaoService {
             order.setUnitPrice(product.getPrice());
             order.setSubtotal(item.getQuantity() * product.getPrice());
             orderRepository.save(order);
+            sale.setTotal(sale.getTotal() + item.getQuantity() * product.getPrice());
         });
 
+        saleRepository.save(sale);
         return sale;
     }
 

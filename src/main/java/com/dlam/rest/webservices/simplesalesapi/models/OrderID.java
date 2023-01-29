@@ -1,5 +1,7 @@
 package com.dlam.rest.webservices.simplesalesapi.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -10,10 +12,12 @@ import java.io.Serializable;
 public class OrderID implements Serializable {
     @ManyToOne
     @JoinColumn(name = "sale_id")
+    @JsonIgnore
     private Sale sale;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Product product;
 
     public OrderID() {

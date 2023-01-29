@@ -2,8 +2,6 @@ package com.dlam.rest.webservices.simplesalesapi.models;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 
 @Entity
 public class Sale {
@@ -11,15 +9,8 @@ public class Sale {
     @Id
     @GeneratedValue
     private Long id;
-
-    private String status;
-
-    public Sale() {
-    }
-
-    public Sale(String status) {
-        this.status = status;
-    }
+    private Double total = 0.0;
+    private String status = "In progress";
 
     public Long getId() {
         return id;
@@ -27,6 +18,14 @@ public class Sale {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
     }
 
     public String getStatus() {
@@ -41,6 +40,7 @@ public class Sale {
     public String toString() {
         return "Sale{" +
                 "id=" + id +
+                ", total=" + total +
                 ", status='" + status + '\'' +
                 '}';
     }
