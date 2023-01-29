@@ -3,6 +3,7 @@ package com.dlam.rest.webservices.simplesalesapi.controllers;
 import com.dlam.rest.webservices.simplesalesapi.models.Product;
 import com.dlam.rest.webservices.simplesalesapi.repositories.ProductRepository;
 import com.dlam.rest.webservices.simplesalesapi.services.ResponseHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,12 +12,8 @@ import java.util.List;
 
 @RestController
 public class ProductController {
-
-    private final ProductRepository repository;
-
-    ProductController(ProductRepository repository) {
-        this.repository = repository;
-    }
+    @Autowired
+    private ProductRepository repository;
 
     @GetMapping("/products")
     public ResponseEntity<Object> getAllProducts() {

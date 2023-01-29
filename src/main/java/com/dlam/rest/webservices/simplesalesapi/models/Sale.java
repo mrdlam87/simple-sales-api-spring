@@ -1,38 +1,47 @@
 package com.dlam.rest.webservices.simplesalesapi.models;
 
+import jakarta.persistence.*;
+
 import java.util.List;
 
+
+@Entity
 public class Sale {
 
-    private List<LineItem> lineItems;
-    private List<TotalItem> totalItems;
-    private Double totalPrice = 0.0;
+    @Id
+    @GeneratedValue
+    private Long id;
 
-    public Sale(List<LineItem> lineItems) {
-        this.lineItems = lineItems;
+    private String status;
+
+    public Sale() {
     }
 
-    public List<LineItem> getLineItems() {
-        return lineItems;
+    public Sale(String status) {
+        this.status = status;
     }
 
-    public void setLineItems(List<LineItem> lineItems) {
-        this.lineItems = lineItems;
+    public Long getId() {
+        return id;
     }
 
-    public List<TotalItem> getTotalItems() {
-        return totalItems;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setTotalItems(List<TotalItem> totalItems) {
-        this.totalItems = totalItems;
+    public String getStatus() {
+        return status;
     }
 
-    public Double getTotalPrice() {
-        return totalPrice;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public void setTotalPrice(Double totalPrice) {
-        this.totalPrice = totalPrice;
+    @Override
+    public String toString() {
+        return "Sale{" +
+                "id=" + id +
+                ", status='" + status + '\'' +
+                '}';
     }
 }
