@@ -2,12 +2,10 @@ package com.dlam.rest.webservices.simplesalesapi.controllers;
 
 import com.dlam.rest.webservices.simplesalesapi.models.*;
 import com.dlam.rest.webservices.simplesalesapi.repositories.OrderRepository;
-import com.dlam.rest.webservices.simplesalesapi.repositories.ProductRepository;
 import com.dlam.rest.webservices.simplesalesapi.repositories.SaleRepository;
 import com.dlam.rest.webservices.simplesalesapi.services.ResponseHandler;
 import com.dlam.rest.webservices.simplesalesapi.services.SaleDaoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
